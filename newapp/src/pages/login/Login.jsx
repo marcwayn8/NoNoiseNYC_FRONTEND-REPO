@@ -44,20 +44,22 @@ export default function Login({ setAuth }) {
       const data = await res.json();
       console.log(data)
       if (!data.token) {
-        setIsAuth(false);
+        await setIsAuth(false);
         return;
       }
       setRefreshToken(data.refreshToken)
 
       window.localStorage.setItem("token", data.token);
       window.localStorage.setItem('currUser', JSON.stringify(data.user));
-      setIsAuth(data.isAuth);
+      await setIsAuth(data.isAuth);
+      async function login(){
           if(isAuth){
     navigate(`/home`);
-      setUser(data.user)}
+     await setUser(data.user)}
       window.localStorage.clear();
-    
     }
+    login()
+  }
       }
       
   function Copyright(props) {

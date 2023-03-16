@@ -66,8 +66,8 @@ export default function ComplaintModal() {
     axios
       .post("http://localhost:4005/complaints", complaint)
       .then((response) => {
-        console.log(response.data);
-        setComplaints(response.data);
+        console.log(response)
+        setComplaints(response);
         setOpen(false);
       })
       .catch((error) => {
@@ -105,29 +105,29 @@ export default function ComplaintModal() {
                   <div className="form-group">
                     <label>Title:</label>
                     <input
-                      type="text"
                       name="title"
                       value={complaint.title}
-                      onChange={createComplaint}
+                      onSubmit={(event)=>{createComplaint(event)}}
+                      className="form-control"
+                   />
+                  </div>
+                  <div className="form-group">
+                    <label>Description:</label>
+                    <input
+                       
+                      name="description"
+                      value={complaint.description}
+                      onSubmit={(event)=>{createComplaint(event)}}
                       className="form-control"
                     />
                   </div>
                   <div className="form-group">
-                    <label>Description:</label>
-                    <textarea
-                      name="description"
-                      value={complaint.description}
-                      onChange={createComplaint}
-                      className="form-control"
-                    ></textarea>
-                  </div>
-                  <div className="form-group">
                     <label>Zip code:</label>
                     <input
-                      type="text"
+               
                       name="zipCode"
                       value={complaint.zipCode}
-                      onChange={createComplaint}
+                      onSubmit={(event)=>{createComplaint(event)}}
                       className="form-control"
                     />
                   </div>
@@ -136,7 +136,7 @@ export default function ComplaintModal() {
                     <select
                       name="severity"
                       value={complaint.severity}
-                      onChange={createComplaint}
+                      onSubmit={(event)=>{createComplaint(event)}}
                       className="form-control"
                     >
                       <option value="low">Low</option>
@@ -169,7 +169,7 @@ export default function ComplaintModal() {
                   <button
                     type="submit"
                     className="btn btn-primary"
-                    onClick={(e) => {
+                    onSubmit={(e) => {
                       e.preventDefault();
                       handleClose();
                       handleNavigate();
@@ -182,10 +182,11 @@ export default function ComplaintModal() {
                     <button
                       type="submit"
                       className="inline-flex items-center rounded-md border border-transparent bg-black px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                      onClick={(e) => {
+                      onSubmit={(e) => {
                         e.preventDefault();
-                        createComplaint(e);
                         handleClose();
+                        createComplaint(e);
+                      
                       }}
                     >
                       Submit Complaint

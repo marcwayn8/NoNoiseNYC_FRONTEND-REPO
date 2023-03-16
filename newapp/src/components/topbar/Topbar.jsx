@@ -1,5 +1,5 @@
 import Logout from "@mui/icons-material/Logout";
-import Search from "@mui/icons-material/Search";
+
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
@@ -32,6 +32,12 @@ export default function Topbar() {
 
   return (
     <div className="topbarContainer">
+      <button class="toggle-menu">
+  <span class="toggle-menu__bar"></span>
+  <span class="toggle-menu__bar"></span>
+  <span class="toggle-menu__bar"></span>
+</button>
+
       <div className="topbarLeft">
         <span className="logo"   onClick={(e) => navigate("/home")}>
          <img src={logo} alt="logo" style={{
@@ -114,7 +120,7 @@ export default function Topbar() {
             anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
           >
             <MenuItem onClick={handleClose} className="profile">
-              <img alt="" className="dropDownImg" />
+              <img src = {profileImage} alt="" className="dropDownImg" />
               <Link className="dropDownLink" to={`/profile/${user.id}`}>
                 {" "}
                 Profile

@@ -9,13 +9,13 @@ import React from 'react';
 import Post from "../post/Post.jsx";
 
 export default function Share() {
-  const { user, setPosts, posts,likes,setLikes} = useContext(AppContext);
+  const { user, setPosts} = useContext(AppContext);
 const [type, setType] = useState("");
 const [input, setInput] = useState("");
 const [title, setTitle] = useState("");
 
-async function createPost(e) {
-e.preventDefault();
+async function createPost() {
+
 if (input === "") return;
 if (type === "") return;
 if (title === "") return;
@@ -35,10 +35,8 @@ if (title === "") return;
       body: JSON.stringify(postInfo),
     });
     const parsed = await result.json();
+    console.log(parsed)
   
-
-    console.log(parsed);
-
     setPosts(parsed);
   
     setInput("");
@@ -94,7 +92,7 @@ if (title === "") return;
             </div>
           </div>
           <IconButton aria-label="send-post" className="addPost">
-            <IoMdSend className="shareButton" onClick={()=>{createPost()  }} />
+            <IoMdSend className="shareButton" onClick={(e)=>{ e.preventDefault(); createPost()  }} />
           </IconButton>
         </div>
       </div>

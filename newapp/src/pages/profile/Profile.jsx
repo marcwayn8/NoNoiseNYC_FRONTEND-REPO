@@ -67,6 +67,7 @@ export default function Profile() {
                 </button>
               </div>
             </div>
+
               <MyPosts/>
             <div className="sm:col-span-3">
             

@@ -15,6 +15,10 @@ export default function Sidebar() {
     backgroundColor: "transparent",
     height: "10",
     width: "10",
+    position:'relative',
+    top:'5px',
+    marginLeft:'20px'
+    
   };
 
   
@@ -39,7 +43,9 @@ export default function Sidebar() {
             <HelpOutline className="sidebarIcon" />
             <span className="sidebarListItemText">About Us</span>
             <Menu as="div" className="relative inline-block text-left">
-              <br />
+              
+              <br></br>
+              <br></br>
               <div>
                 <Menu.Button style={button} onClick={handleOpenModal}>
                   Make a Complaint

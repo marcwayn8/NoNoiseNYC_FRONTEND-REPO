@@ -7,7 +7,6 @@ import { DateTime } from "luxon";
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AppContext from "../../context/appContext.jsx";
-
 import CommentModal from "../comments/commentModal.js";
 import CommentDropDown from "../comments/commentDropdown.js";
 import "./post.css";
@@ -15,12 +14,15 @@ import img from './img.jpg'
 import React from 'react';
 import { generateUsername } from "../../generate.js";
 
+
 export default function Post({ key,post, setPosts, userInfo }) {
   
   const { posts, feedMetric, user } = useContext(AppContext);
   const [isLiked, setIsLiked] = useState(true);
   const [likes,setLikes] = useState(post.likes);
   const [current,setCurrent] = useState("");
+  
+
 
   useEffect(() => {
     async function fetchData() {
@@ -34,13 +36,16 @@ export default function Post({ key,post, setPosts, userInfo }) {
 
   const handleDelete = async (e) => {
     try {
-      await fetch(`http://localhost:4005/post/${post.postId}`, {
+      const res = await fetch(`http://localhost:4005/post/${post.postId}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
         },
       });
-      const filtered = posts.filter((p) => p.postId !== post.postId);
+      const data = await res.json();
+      console.log(data)
+      const filtered = data.filter((p) => p.postId !== post.postId);
+       console.log(filtered)
       setPosts(filtered);
     } catch (error) {
       console.log(error);
@@ -49,7 +54,6 @@ export default function Post({ key,post, setPosts, userInfo }) {
 
   const likeHandler = async () => {
     if (!isLiked) {
- 
       await fetch(`http://localhost:4005/post/${post.postId}`, {
         method: "PATCH",
         headers: {
@@ -66,7 +70,7 @@ export default function Post({ key,post, setPosts, userInfo }) {
     <div className="post">
       <div className="postWrapper">
         <div className="postTop">
-          <div className="postTopLeft">
+          <div className="postTopLeft" id={`post-${post.postId}`}>
             <Link to={`/profile/${user.id}`}>
               <img className="postProfileImg" id="logo" src={img} alt="" />
             </Link>
@@ -76,12 +80,12 @@ export default function Post({ key,post, setPosts, userInfo }) {
             </span>
           </div>
           <div className="postTopRight">
-            {post.user_id = user.id && (
+            {post.user_id === user.id && (
               <IconButton aria-label="delete">
                 <DeleteIcon
                   className="delete-comment"
                   type="submit"
-                  onClick={handleDelete}
+                  onClick={()=>{handleDelete(post.PostId)}}
                 />
               </IconButton>
             )}
@@ -110,31 +114,39 @@ export default function Post({ key,post, setPosts, userInfo }) {
             </IconButton>
            
           </div>
-         <center><div className="viewComments"> <span className="inline-flex items-center text-sm">
-           <CommentDropDown  postId={post.postId} className="h-5 w-5" aria-hidden="true" />
-         </span></div></center> 
-         
-          <div className="postBottomRight">
-            <span className="postCommentText" >
-              {feedMetric[post.postId] && feedMetric[post.postId][0] > 0 && (
-                <span className="postCommentText">
-                  {feedMetric[post.postId][0]} Comments
-                </span>
-              )}
-              {feedMetric[post.postId] &&
-                feedMetric[post.postId][0] === 0 && (
-                  <span className="postCommentText">
-             <span className="inline-flex items-center text-sm" >
-                              <button type="button" className="inline-flex hover:text-gray-500">
-                                <CommentModal className="h-5 w-5" aria-hidden="true" postId={post.postId}/>
-                              </button>
-                            </span>       
-                  </span>
-                )}
+           {post.user_id === user.id ? (
+        <center>
+          <div className="viewComments">
+            <span className="inline-flex items-center text-sm">
+              <CommentDropDown postId={post.postId} className="h-5 w-5" aria-hidden="true" />
             </span>
           </div>
-        </div>
+        </center>
+      ) : null}
+      {post.user_id === user.id ? (
+      <div className="postBottomRight">
+        
+          <span className="postCommentText">
+            {feedMetric[post.postId] && feedMetric[post.postId][0] > 0 && (
+              <span className="postCommentText">
+                {feedMetric[post.postId][0]} Comments
+              </span>
+            )}
+            {feedMetric[post.postId] && feedMetric[post.postId][0] === 0 && (
+              <span className="postCommentText">
+                <span className="inline-flex items-center text-sm">
+                  <button type="button" className="inline-flex hover:text-gray-500">
+                    <CommentModal className="h-5 w-5" aria-hidden="true" postId={post.postId}/>
+                  </button>
+                </span>
+              </span>
+            )}
+          </span>
       </div>
+        ): null}
     </div>
+    </div>
+    </div>
+
   );
 }

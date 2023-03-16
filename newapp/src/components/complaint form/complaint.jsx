@@ -90,10 +90,8 @@ return (
         <img src={logo} alt="User profile image" />
       </div>
       <div className="map-container">
-  <div ref={mapRef} className="map"></div>
+  <div  className="map">{map}</div>
 </div>
-
-
     </div>
     </div>
   );

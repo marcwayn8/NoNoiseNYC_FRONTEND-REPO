@@ -19,9 +19,9 @@ export default function CommentList({ postId }) {
     <ul  >
       {
           <li className="py-4">
-        hi
+        That's so true, noise pollution is an absolutely horrid thing , i hope one day it changes
             <br></br>
-            - 
+            - marcwayn999
           </li>
       }
     </ul>
