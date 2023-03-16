@@ -1,0 +1,154 @@
+.avatarPic {
+  background-color: #343a40 !important;
+}
+
+.copyright {
+  margin-top: 20px !important;
+}
+
+.toSignUp {
+  font-size: 14px;
+  font-weight: 200;
+}
+
+.page {
+  height: 100vh;
+  display: flex;
+  background-color: white;
+  overflow: hidden;
+  justify-content: center;
+}
+
+.left-side {
+  content: url(https://cdn.dribbble.com/users/844597/screenshots/16405713/media/0f01a30cde6d70c2d537f4df19519a24.png?compress=1&resize=1200x900&vertical=top);
+  width: 40%;
+  height: 93%;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.right-side {
+  width: 40%;
+  height: 93%;
+  background-color: #154032;
+  padding: 25px 40px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.logo {
+  font-size: 29px;
+  margin-left: 20px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  font-family: "Macondo", cursive;
+}
+
+.tagline {
+  font-size: 18px;
+  margin-left: 35px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  font-family: "Macondo", cursive;
+}
+
+.pageSwitcherL {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10%;
+}
+
+.pageSwitcherItemL {
+  background-color: #efeb95;
+  color: black;
+  padding: 10px 25px;
+  cursor: pointer;
+  font-size: 0.9em;
+  border: none;
+  outline: none;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.pageSwitcherItemL:first-child {
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+}
+
+.pageSwitcherItemL:hover {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+.pageSwitcherItemL:last-child {
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+  background-color: #154032;
+  color: white;
+}
+
+.form-outline {
+  margin-bottom: 40px;
+}
+
+.formLabel {
+  display: block;
+  text-transform: uppercase;
+  font-size: 0.9em;
+  color: white;
+}
+
+.button {
+  background-color: #efeb95;
+  color: bl;
+  border: none;
+  outline: none;
+  border-radius: 25px;
+  padding: 15px 70px;
+  font-size: 1em;
+  font-weight: 500;
+}
+
+.pageSwitcherS {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10%;
+}
+
+.pageSwitcherItemS {
+  background-color: #efeb95;
+  color: black;
+  padding: 10px 25px;
+  cursor: pointer;
+  font-size: 0.9em;
+  border: none;
+  outline: none;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.pageSwitcherItemS:first-child {
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+  background-color: #154032;
+  color: white;
+}
+
+.pageSwitcherItemS:last-child:hover {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.pageSwitcherItemS:first-child:hover {
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.pageSwitcherItemS:last-child {
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+}
