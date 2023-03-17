@@ -29,8 +29,9 @@ export default function Login({ setAuth }) {
     e.preventDefault();
     const loginData = {
       email,
-      password,
+      password
     };
+    console.log(loginData)
     loginUser()
 
     async function loginUser() {
@@ -44,22 +45,20 @@ export default function Login({ setAuth }) {
       const data = await res.json();
       console.log(data)
       if (!data.token) {
-        await setIsAuth(false);
+        setIsAuth(false);
         return;
       }
       setRefreshToken(data.refreshToken)
 
       window.localStorage.setItem("token", data.token);
       window.localStorage.setItem('currUser', JSON.stringify(data.user));
-      await setIsAuth(data.isAuth);
-      async function login(){
+      setIsAuth(data.isAuth);
           if(isAuth){
     navigate(`/home`);
-     await setUser(data.user)}
+      setUser(data.user)}
       window.localStorage.clear();
+    
     }
-    login()
-  }
       }
       
   function Copyright(props) {

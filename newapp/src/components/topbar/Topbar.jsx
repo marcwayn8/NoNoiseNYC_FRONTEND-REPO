@@ -47,21 +47,11 @@ export default function Topbar() {
 
         </span>
       </div>
-      {/* <div className="topbarCenter">
-        <div className="searchbar">
-          <Search className="searchIcon" />
-          <input
-            placeholder="Search for recent posts / complaints"
-            className="searchInput"
-            value={searchTerm}
-                        onChange={(e)=>setSearchTerm(e.target.value)}
-          />
-        </div>
-      </div> */}
+      
       <div className="topbarRight">
         <>
-          <div>
-            <input type="checkbox" class="checkbox" id="chk" onChange={toggleTheme}/>
+         <div>
+            <input type="checkbox" id="toggleTheme" class="checkbox" id="chk" onChange={toggleTheme}/>
             <label class="label" for="chk" >
               <i class="fas fa-moon"></i>
               <i class="fas fa-sun"></i>

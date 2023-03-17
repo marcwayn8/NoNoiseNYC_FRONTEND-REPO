@@ -2,6 +2,8 @@
   flex: 2;
   height: calc(100vh - 50px);
   overflow-y: scroll;
+  display:flex;
+  justify-content: center;
   position: sticky;
   top: 50px;
   font-size: 18px;
@@ -10,6 +12,9 @@
   border-radius:50%;
   width:75px;
   height:75px;
+  left :55px;
+  position:relative;
+  top:40px;
 }
 #dark .sideBarLinks {
   color: white;
@@ -112,4 +117,35 @@
 #dark .sidebarListItem:hover {
   color: #343a40;
   cursor: pointer;
+}
+
+#button {
+  background-color: black;
+  color: white;
+  border: none;
+  position:relative;
+  top:5px;
+  left:2px;
+  border-radius: 4px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+#button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.6);
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
 }

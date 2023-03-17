@@ -13,8 +13,6 @@ const ContextProvider = (props) => {
   const [complaint, setComplaints] = useState([]);
   const [likes,setLikes] = useState(0)
 
-
-
   function fetchLatestComplaints() {
     axios.get('http://localhost:4005/complaints')
         .then(response => {
@@ -26,7 +24,6 @@ const ContextProvider = (props) => {
             console.error(`Error getting latest complaints: ${error}`);
         });
 }
-
 fetchLatestComplaints()
 
   const toggleTheme = () => {
@@ -52,24 +49,13 @@ fetchLatestComplaints()
       const likeRes = await fetch("http://localhost:4005/post");
       const likeData = await likeRes.json();
       console.log(likeData)
-      // for (let like of likeData) {
-      //   if (like.post_id in map) {
-      //     map[like.post_id][1] = parseInt(like.likecount);
-      //   } else {
-      //     map[like.post_id] = [0, parseInt(like.likecount)];
-      //   }
-      // }
       setFeedMetric(map);
     }
-
     getFeed();
     getLikeCountAndCommentCount();
   }, []);
 
   useEffect(() => {
-
-
-  
     const userToken = window.localStorage.getItem("token");
     if (!userToken) return;
 

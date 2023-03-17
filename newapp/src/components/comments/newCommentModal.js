@@ -47,31 +47,14 @@ export default function NewCommentModal({ postId }) {
                             >
                                 Write
                             </Tab>
-                            <Tab
-                                className={({ selected }) =>
-                                    classNames(
-                                        selected
-                                            ? 'text-gray-900 bg-gray-100 hover:bg-gray-200'
-                                            : 'text-gray-500 hover:text-gray-900 bg-white hover:bg-gray-100',
-                                        'ml-2 rounded-md border border-transparent px-3 py-1.5 text-sm font-medium'
-                                    )
-                                }
-                            >
-                                Preview
-                            </Tab>
+                          
                             {/* These buttons are here simply as examples and don't actually do anything. */}
                             {selectedIndex === 0 ? (
                                 <div className="ml-auto flex items-center space-x-5">
                                     <div className="flex items-center">
                                     </div>
                                     <div className="flex items-center">
-                                        <button
-                                            type="button"
-                                            className="-m-2.5 inline-flex h-10 w-10 items-center justify-center rounded-full text-gray-400 hover:text-gray-500"
-                                        >
-                                            <span className="sr-only">Insert Image</span>
-                                            <CodeBracketIcon className="h-5 w-5" aria-hidden="true" />
-                                        </button>
+                                        
                                     </div>
                                     <div className="flex items-center">
                                     </div>

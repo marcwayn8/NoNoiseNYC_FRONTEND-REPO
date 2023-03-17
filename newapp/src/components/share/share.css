@@ -32,6 +32,7 @@
   display: flex;
   align-items: center;
   justify-self: space-between;
+  margin-left : 20px;
 }
 
 .shareProfileImg {
@@ -39,7 +40,9 @@
   height: 50px;
   border-radius: 50%;
   object-fit: cover;
+  margin-left:10px;
   margin-right: 10px;
+  margin-top:20px;
 }
 
 .shareInput {

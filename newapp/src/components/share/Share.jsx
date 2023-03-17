@@ -6,7 +6,7 @@ import AppContext from "../../context/appContext";
 import "./share.css";
 import logo from "./img.jpg";
 import React from 'react';
-import Post from "../post/Post.jsx";
+
 
 export default function Share() {
   const { user, setPosts} = useContext(AppContext);
@@ -63,13 +63,13 @@ if (title === "") return;
           <img className="shareProfileImg" src={logo} alt="Profile Pic" />
           <input
             value={title}
-            placeholder={`Title`}
+           
             className="shareInput"
             onChange={handleTitleChange}
           />
           <input
             value={type}
-            placeholder={`Type`}
+          
             className="shareInput"
             onChange={handleTypeChange}
           />
@@ -92,7 +92,7 @@ if (title === "") return;
             </div>
           </div>
           <IconButton aria-label="send-post" className="addPost">
-            <IoMdSend className="shareButton" onClick={(e)=>{ e.preventDefault(); createPost()  }} />
+            <IoMdSend className="shareButton" onClick={(e)=>{  createPost() ; e.preventDefault();}} />
           </IconButton>
         </div>
       </div>

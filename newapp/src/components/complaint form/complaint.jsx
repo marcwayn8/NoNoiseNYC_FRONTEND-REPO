@@ -6,8 +6,6 @@ import AppContext from '../../context/appContext'
 import logo from './img.jpg'
 import Topbar from "../../components/topbar/Topbar.jsx";
 
-
-
 export default function SeverityMeterComponent() {
 
   const {  user ,complaint, setComplaints} = useContext(AppContext);

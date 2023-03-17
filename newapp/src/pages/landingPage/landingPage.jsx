@@ -14,10 +14,15 @@ const RootStyle = styled('div')(({ theme }) => ({
   },
 }));
 
+const image ={
+  width:'700px',
+  height:'700px'
+
+}
+
 export default function LandingPage() {
   const navigate = useNavigate();
   return (
-    
     <RootStyle>
       <Container>
         <Grid container columnSpacing={10} justifyContent="space-between" alignItems="center">
@@ -46,24 +51,9 @@ export default function LandingPage() {
                   disableRipple
                   color="inherit"
                   size="large"
-                  startIcon={
-                    <Box
-                      sx={{
-                        width: 48,
-                        height: 48,
-                        display: 'flex',
-                        borderRadius: '50%',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        border: (theme) => `solid 2px ${alpha(theme.palette.primary.main, 0.24)}`,
-                      }}
-                    >
-                    
-                    </Box>
-                  }
                   sx={{
                     px: 0,
-                    '&:hover': { bgcolor: 'black' },
+                    '&:hover': {fontSize:  "18px", bgcolor: 'black' },
                   }}
                  
                 >
@@ -84,6 +74,7 @@ export default function LandingPage() {
           >
             <img
               alt="marketing-market"
+            style={image}
               src={logo}
             />
           </Grid>

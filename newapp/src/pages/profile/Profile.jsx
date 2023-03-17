@@ -165,6 +165,8 @@ export default function Profile() {
           </div>
         </div>
 
+       <center><button>Submit</button></center> 
+
         <div className="pt-8">
           <div>
             <h3 className="text-lg font-medium leading-6 text-gray-900">Notifications</h3>

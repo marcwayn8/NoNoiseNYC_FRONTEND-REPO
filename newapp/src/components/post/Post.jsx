@@ -1,7 +1,6 @@
 import DeleteIcon from "@mui/icons-material/Delete";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderTwoToneIcon from "@mui/icons-material/FavoriteBorderTwoTone";
-
 import IconButton from "@mui/material/IconButton";
 import { DateTime } from "luxon";
 import { useContext, useEffect, useState } from "react";
@@ -14,22 +13,21 @@ import img from './img.jpg'
 import React from 'react';
 import { generateUsername } from "../../generate.js";
 
-
 export default function Post({ key,post, setPosts, userInfo }) {
-  
   const { posts, feedMetric, user } = useContext(AppContext);
   const [isLiked, setIsLiked] = useState(true);
-  const [likes,setLikes] = useState(post.likes);
-  const [current,setCurrent] = useState("");
-  
-
+  const [likes, setLikes] = useState(post.likes);
+  const [current, setCurrent] = useState("");
+  const [valid, setValid] = useState(null);
 
   useEffect(() => {
     async function fetchData() {
       const res = await fetch(`http://localhost:4005/users/${post.user_id}`);
       const data = await res.json();
-      console.log(data.username);
+
       data.username !== undefined ? setCurrent(data.username) : setCurrent(generateUsername());
+      console.log(user.id);
+      console.log(post.user_id);
     }
     fetchData();
   }, []);
@@ -43,9 +41,9 @@ export default function Post({ key,post, setPosts, userInfo }) {
         },
       });
       const data = await res.json();
-      console.log(data)
+      console.log(data);
       const filtered = data.filter((p) => p.postId !== post.postId);
-       console.log(filtered)
+      console.log(filtered);
       setPosts(filtered);
     } catch (error) {
       console.log(error);
@@ -59,10 +57,9 @@ export default function Post({ key,post, setPosts, userInfo }) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ postId:post.postId,isLiked:isLiked}),
+        body: JSON.stringify({ postId: post.postId, isLiked: isLiked }),
       });
-
-    } 
+    }
     setIsLiked(!isLiked);
   };
 
@@ -75,27 +72,37 @@ export default function Post({ key,post, setPosts, userInfo }) {
               <img className="postProfileImg" id="logo" src={img} alt="" />
             </Link>
             <span className="postUsername">{current}</span>
-            <span className="postDate">
-              {DateTime.fromISO().toRelative()}
-            </span>
+            <span className="postDate">{DateTime.fromISO().toRelative()}</span>
           </div>
-          <div className="postTopRight">
-            {post.user_id === user.id && (
+          {user.id === post.user_id ? (
+            <div className="postTopRight">
               <IconButton aria-label="delete">
                 <DeleteIcon
-                  className="delete-comment"
+                  className="delete-icon"
                   type="submit"
-                  onClick={()=>{handleDelete(post.PostId)}}
+                  onClick={() => {
+                    handleDelete(post.PostId);
+                  }}
                 />
               </IconButton>
-            )}
-          </div>
+            </div>
+          ) : (
+            <div className="postTopRight">
+              <IconButton aria-label="delete">
+                <DeleteIcon
+                  className="delete-icon"
+                  type="submit"
+                  onClick={() => {
+                    handleDelete(post.PostId);
+                  }}
+                />
+              </IconButton>
+            </div>
+          )}
         </div>
+        
         <div className="postCenter">
-         
-          <h2 >{post.post_title}  </h2>
-         <center><h3>{post.post_type} </h3> </center> 
-         
+        
          <span className="postText">{post.post_description}</span>
         </div>
         <div className="postBottom">
@@ -114,7 +121,7 @@ export default function Post({ key,post, setPosts, userInfo }) {
             </IconButton>
            
           </div>
-           {post.user_id === user.id ? (
+           {user.id === post.user_id? (
         <center>
           <div className="viewComments">
             <span className="inline-flex items-center text-sm">
@@ -122,17 +129,22 @@ export default function Post({ key,post, setPosts, userInfo }) {
             </span>
           </div>
         </center>
-      ) : null}
-      {post.user_id === user.id ? (
+      ) :  <center>
+      <div className="viewComments">
+        <span className="inline-flex items-center text-sm">
+          <CommentDropDown postId={post.postId} className="h-5 w-5" aria-hidden="true" />
+        </span>
+      </div>
+    </center>}
+     
       <div className="postBottomRight">
-        
           <span className="postCommentText">
             {feedMetric[post.postId] && feedMetric[post.postId][0] > 0 && (
               <span className="postCommentText">
                 {feedMetric[post.postId][0]} Comments
               </span>
             )}
-            {feedMetric[post.postId] && feedMetric[post.postId][0] === 0 && (
+           
               <span className="postCommentText">
                 <span className="inline-flex items-center text-sm">
                   <button type="button" className="inline-flex hover:text-gray-500">
@@ -140,13 +152,13 @@ export default function Post({ key,post, setPosts, userInfo }) {
                   </button>
                 </span>
               </span>
-            )}
+          
           </span>
       </div>
-        ): null}
     </div>
     </div>
     </div>
+    
 
   );
 }

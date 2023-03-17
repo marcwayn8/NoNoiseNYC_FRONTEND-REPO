@@ -18,7 +18,7 @@ import {
 
 
 export default function CommentDropDown({postId}) {
-
+ console.log(postId)
       const [show, setShow] = useState(false);
 
   const toggleModal = () => {
