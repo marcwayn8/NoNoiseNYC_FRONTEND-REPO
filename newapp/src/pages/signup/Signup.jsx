@@ -50,9 +50,11 @@ console.log(authen)
     const parsed = await result.json();
     console.log(parsed)
 
+
     navigate("/login", { replace: true })}
     else{
-      alert(authen.message)
+      alert(authen)
+
     }     
 } 
    

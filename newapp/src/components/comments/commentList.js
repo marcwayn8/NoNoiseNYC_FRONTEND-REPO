@@ -5,23 +5,29 @@ export default function CommentList({ postId }) {
 
 console.log(postId)
   const [data, setData] = useState([])
+  const [username, setUserName] = useState([])
 
 
   useEffect(() => {
     fetch(`http://localhost:4005/comment/${postId}`)
       .then(res => res.json())
-      .then(json => console.log(json))
+      .then(json => setData(json))
+
+
+      fetch(`http://localhost:4005/users/${data.userId}`)
+      .then(res => res.json())
+      .then(json => setUserName(json))
   }, []);
 
 
-  console.log(data)
+
   return (
     <ul  >
       {
           <li className="py-4">
-        That's so true, noise pollution is an absolutely horrid thing , i hope one day it changes
+      {data.commentDescription}
             <br></br>
-            - marcwayn999
+        {username}
           </li>
       }
     </ul>

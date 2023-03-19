@@ -48,34 +48,15 @@ if (title === "") return;
     setInput(e.target.value);
   };
 
-  const handleTypeChange = (e) => {
-    setType(e.target.value);
-  };
-
-  const handleTitleChange = (e) => {
-    setTitle(e.target.value);
-  };
+ 
 
   return (
     <div className="share">
       <div className="shareWrapper">
-        <div className="shareTop">
-          <img className="shareProfileImg" src={logo} alt="Profile Pic" />
+        <div className="shareTop">     
           <input
-            value={title}
-           
-            className="shareInput"
-            onChange={handleTitleChange}
-          />
-          <input
-            value={type}
-          
-            className="shareInput"
-            onChange={handleTypeChange}
-          />
-          <textarea
             value={input}
-            placeholder={`Tell us more, ${user.username}...`}
+            placeholder={`What's on your mind, ${user.username}...`}
             className="shareInput"
             onChange={handleInputChange}
           />
@@ -84,15 +65,10 @@ if (title === "") return;
         <div className="shareBottom">
           <div className="shareOptions">
             <div className="shareOption">
-              <div>
-                <IconButton aria-label="add-image">
-                  <BiImageAdd className="shareIcon" />
-                </IconButton>
-              </div>
             </div>
           </div>
           <IconButton aria-label="send-post" className="addPost">
-            <IoMdSend className="shareButton" onClick={(e)=>{  createPost() ; e.preventDefault();}} />
+            <IoMdSend className="shareButton" onClick={(e)=>{  createPost() ;}} />
           </IconButton>
         </div>
       </div>

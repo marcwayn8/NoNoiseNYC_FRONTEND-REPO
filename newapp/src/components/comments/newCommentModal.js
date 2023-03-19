@@ -23,8 +23,9 @@ export default function NewCommentModal({ postId }) {
             },
             body: JSON.stringify({
                 userId: userId,
-                postId: postId,
-                CommentDescription: content
+               
+                commentary: content,
+                likes:0
             })
         }).then(setContent(''))
     }
