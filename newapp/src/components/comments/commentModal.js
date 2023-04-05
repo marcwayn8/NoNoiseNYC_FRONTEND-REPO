@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import CommentDropDown from "../comments/commentDropdown.js";
 
 import Modal from '@mui/material/Modal';
 import NewCommentModal from './newCommentModal';
@@ -45,6 +46,13 @@ function CommentModal({ postId }) {
             >
                 <Box sx={style}>
                     <NewCommentModal postId={postId} />
+                    <center>
+      <div className="viewComments">
+        <span className="inline-flex items-center text-sm">
+          <CommentDropDown postId={postId} className="h-5 w-5" aria-hidden="true" />
+        </span>
+      </div>
+    </center>
                 </Box>
             </Modal>
         </div>

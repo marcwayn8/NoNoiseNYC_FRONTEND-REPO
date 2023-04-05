@@ -1,45 +1,50 @@
-
-import React, { Component, useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 export default function CommentList({ postId }) {
-
-console.log(postId)
-  const [data, setData] = useState([])
-  const [username, setUserName] = useState([])
-
+  console.log(postId);
+  const [comments, setComments] = useState([]);
 
   useEffect(() => {
     fetch(`http://localhost:4005/comment/${postId}`)
-      .then(res => res.json())
-      .then(json => setData(json))
-
-
-      fetch(`http://localhost:4005/users/${data.userId}`)
-      .then(res => res.json())
-      .then(json => setUserName(json))
+      .then((res) => res.json())
+      .then((json) => {
+        console.log(json)
+        setComments(json);
+      });
   }, []);
 
 
-
   return (
-    <ul  >
-      {
+    <>
+      <ul>
+        {comments.map((comment) => (
+      
           <li className="py-4">
-      {data.commentDescription}
-            <br></br>
-        {username}
+           - {comment.commentDescription}
+           -  <User userId={comment.userId} />
           </li>
-      }
-    </ul>
-  )
+        ))}
+      </ul>
+    </>
+  );
+
+  
 }
+function User({ userId }) {
+  const [user, setUser] = useState(null);
 
+  useEffect(() => {
+    fetch(`http://localhost:4005/users/${userId}`)
+      .then((res) => res.json())
+      .then((json) => {
+        console.log(json)
+        setUser(json);
+      });
+  }, []);
 
+  if (!user) {
+    return <div>Loading...</div>;
+  }
 
-
-
-
-
-
-
-
+  return <div className="py-4">- {user.username}</div>;
+}

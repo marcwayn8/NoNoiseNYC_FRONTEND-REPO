@@ -10,7 +10,7 @@ function classNames(...classes) {
 export default function NewCommentModal({ postId }) {
     const [content, setContent] = useState('')
       const {  user } = useContext(AppContext);
-      const [preview, setPreview] = useState('')
+     
 
     function createComment() {
         const userId = user.id
@@ -36,18 +36,7 @@ export default function NewCommentModal({ postId }) {
                 {({ selectedIndex }) => (
                     <>
                         <Tab.List className="flex items-center">
-                            <Tab
-                                className={({ selected }) =>
-                                    classNames(
-                                        selected
-                                            ? 'text-gray-900 bg-gray-100 hover:bg-gray-200'
-                                            : 'text-gray-500 hover:text-gray-900 bg-white hover:bg-gray-100',
-                                        'rounded-md border border-transparent px-3 py-1.5 text-sm font-medium'
-                                    )
-                                }
-                            >
-                                Write
-                            </Tab>
+                           
                           
                             {/* These buttons are here simply as examples and don't actually do anything. */}
                             {selectedIndex === 0 ? (
@@ -75,17 +64,11 @@ export default function NewCommentModal({ postId }) {
                                         className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                         placeholder="Add your comment..."
                                         value={content}
-                                        onChange={(e) => { setContent(e.target.value); setPreview() }}
+                                        onChange={(e) => { setContent(e.target.value)}}
                                     />
                                 </div>
                             </Tab.Panel>
-                            <Tab.Panel className="-m-0.5 rounded-lg p-0.5">
-                                <div className="border-b">
-                                    <div className="mx-px mt-px px-3 pt-2 pb-12 text-sm leading-5 text-gray-800">
-                                    {preview}
-                                    </div>
-                                </div>
-                            </Tab.Panel>
+                           
                         </Tab.Panels>
                     </>
                 )}

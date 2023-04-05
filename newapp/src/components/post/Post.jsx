@@ -7,7 +7,7 @@ import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AppContext from "../../context/appContext.jsx";
 import CommentModal from "../comments/commentModal.js";
-import CommentDropDown from "../comments/commentDropdown.js";
+
 import "./post.css";
 import img from './img.jpg'
 import React from 'react';
@@ -121,22 +121,7 @@ export default function Post({ key,post, setPosts, userInfo }) {
             </IconButton>
            
           </div>
-           {user.id === post.user_id? (
-        <center>
-          <div className="viewComments">
-            <span className="inline-flex items-center text-sm">
-              <CommentDropDown postId={post.postId} className="h-5 w-5" aria-hidden="true" />
-            </span>
-          </div>
-        </center>
-      ) :  <center>
-      <div className="viewComments">
-        <span className="inline-flex items-center text-sm">
-          <CommentDropDown postId={post.postId} className="h-5 w-5" aria-hidden="true" />
-        </span>
-      </div>
-    </center>}
-     
+        
       <div className="postBottomRight">
           <span className="postCommentText">
             {feedMetric[post.postId] && feedMetric[post.postId][0] > 0 && (

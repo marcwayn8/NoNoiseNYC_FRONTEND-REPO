@@ -6,16 +6,29 @@ import AppContext from '../../context/appContext'
 import logo from './img.jpg'
 import Topbar from "../../components/topbar/Topbar.jsx";
 
+
+
 export default function SeverityMeterComponent() {
 
-  const {  user ,complaint, setComplaints} = useContext(AppContext);
+  const {  user } = useContext(AppContext);
   const mapRef = useRef(null);
   const [map, setMap] = useState(null);
   const [markerGroup, setMarkerGroup] = useState(null);
-  
+  const [complaint, setComplaint] = useState({
+    title: '',
+    description: '',
+    zipCode: '',
+    severity: 'low',
+    userId: user.id
+  });
+
+  const [complaints, setComplaints] = useState([]);
+
+
   useEffect(() => {
     initMap();
 
+    fetchLatestComplaints();
   }, []);
 
   function initMap() {
@@ -88,8 +101,10 @@ return (
         <img src={logo} alt="User profile image" />
       </div>
       <div className="map-container">
-  <div  className="map">{map}</div>
+  <div ref={mapRef} className="map"></div>
 </div>
+
+
     </div>
     </div>
   );

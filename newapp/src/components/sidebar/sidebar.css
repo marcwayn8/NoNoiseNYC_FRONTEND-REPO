@@ -16,6 +16,17 @@
   position:relative;
   top:40px;
 }
+
+.handleCloseModal{
+  position:absolute;
+
+left: 40px;
+top:100px;
+margin:auto;
+z-index:-1;
+
+
+}
 #dark .sideBarLinks {
   color: white;
 }

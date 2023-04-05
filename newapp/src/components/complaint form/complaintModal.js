@@ -1,47 +1,52 @@
 import { useEffect, useState, useContext, Fragment } from "react";
 import AppContext from "../../context/appContext.jsx";
 import React from "react";
-import axios from "axios";
-import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import { useNavigate } from "react-router-dom";
 import { Menu, Transition } from "@headlessui/react";
 import ComplaintList from "./complaintList.js";
 
 const style = {
-  position: "absolute",
+  position: "relative",
   display: "flex",
-  padding: "20px",
-  margin: "30px",
+  padding: "70px",
+  marginLeft: "120px",
   width: "170px",
-  top: "430px",
-  borderColor: "black",
+  top: "220px",
+ left:"70px",
   transform: "translate(-50%, -50%)",
   color: "black",
-  bgcolor: "background.paper",
+  bgcolor: "transparent",
 
   boxShadow: 24,
   p: 6,
 };
 
+const complaintButton =  {
+position:"relative",
+top:"5px",
+marginLeft:"50px"
+
+}
+
 const button = {
-  backgroundColor: "black",
+  backgroundColor: "transparent",
   height: "30",
   width: "60",
-  color: "white",
+  color: "black",
   fontWeight: "40",
   marginRight: "0",
   borderColor: "gray",
 };
 
-export default function ComplaintModal() {
+export default function ComplaintModal({Close}) {
   const { user, complaint, setComplaints } = useContext(AppContext);
   const navigate = useNavigate();
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [setComplaintData, ComplaintData] = useState("");
+
 
   function createComplaint(event) {
     const userId = user.id;
@@ -50,13 +55,13 @@ export default function ComplaintModal() {
     const severity = target.severity.value;
     const zipCode = target.zipCode.value;
     const description = target.description.value;
-    const value = target.type === "checkbox" ? target.checked : target.value;
+   
     setComplaints({
       userId,
       title,
       description,
       zipCode,
-      severity,
+      severity
     });
     console.log(complaint);
   }
@@ -73,8 +78,8 @@ export default function ComplaintModal() {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        setComplaints(data);
-        setOpen(false);
+    
+      
       })
       .catch((error) => {
         console.error(`Error submitting complaint: ${error}`);
@@ -82,7 +87,7 @@ export default function ComplaintModal() {
   }
 
   function handleNavigate() {
-    navigate(`/main`);
+    navigate('/main');
   }
 
   return (
@@ -91,11 +96,13 @@ export default function ComplaintModal() {
         <Menu as="div" className="relative inline-block text-left">
           <Menu.Button
             type="button"
+            style={complaintButton}
             className="inline-flex items-center rounded-md border border-transparent bg-black px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
             onClick={handleOpen}
           >
-            Create Complaint
+            Create Complaint   
           </Menu.Button>
+          <Close/>
           <Transition
             as={Fragment}
             enter="transition ease-out duration-100"
@@ -106,19 +113,13 @@ export default function ComplaintModal() {
             leaveTo="transform opacity-0 scale-95"
           >
             <Menu.Items>
-              <div className="flex justify-end">
-                <button
-                  className="text-red-600 hover:text-red-800"
-                  onClick={handleClose}
-                >
-                  X
-                </button>
-              </div>
+              
 
-              <div className="bg-white p-4">
+              <div className="bg-white p-6">
                 <form onSubmit={handleSubmit}>
-                  <label htmlFor="title">Title:</label>
-                 <div> <textarea
+                  {/* <label htmlFor="title">Title:</label> */}
+                 <input
+
                     type="text"
                     name="title"
                     id="title"
@@ -127,10 +128,10 @@ export default function ComplaintModal() {
                       setComplaints({ ...complaint, title: event.target.value })
                     }
                     className="form-control"
-                  /></div>
-
-                  <label htmlFor="description">Description:</label>
-                  <div><textarea
+                  />
+{/* 
+                  <label htmlFor="description">Description:</label> */}
+                  <input
                     type="text"
                     name="description"
                     id="description"
@@ -142,10 +143,10 @@ export default function ComplaintModal() {
                       })
                     }
                     className="form-control"
-                  /></div>
-
-                  <label htmlFor="zipCode">Zip code:</label>
-                 <div> <textarea
+                  />
+{/* 
+                  <label htmlFor="zipCode">Zip code:</label> */}
+                 <input
                     type="text"
                     name="zipCode"
                     id="zipCode"
@@ -157,7 +158,7 @@ export default function ComplaintModal() {
                       })
                     }
                     className="form-control"
-                  /></div>
+                  />
                   <label htmlFor="severity">Severity:</label>
                   <select
                     name="severity"
@@ -207,7 +208,7 @@ export default function ComplaintModal() {
                     className="btn btn-primary"
                     onSubmit={(e) => {
                       e.preventDefault();
-                      handleClose();
+                    
                       handleNavigate();
                     }}
                   >

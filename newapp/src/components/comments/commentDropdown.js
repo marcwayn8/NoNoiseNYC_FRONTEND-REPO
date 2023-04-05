@@ -38,9 +38,9 @@ const button = {
     return (
         <Menu as="div" className="relative inline-block text-left">
             <div>
-                <Menu.Button style={button} >∨
-
-                 
+                <Menu.Button style={button} >
+                    View Comments 
+                         ∨    
             </Menu.Button>
             </div>
 

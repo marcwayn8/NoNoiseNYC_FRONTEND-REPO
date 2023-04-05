@@ -1,6 +1,25 @@
 import React from 'react';
+import Box from '@mui/material/Box';
 
 export default function ComplaintList({ postId }) {
+
+  const complaintList = {
+position:"relative",
+top:"250px",
+Zindex:"1"
+  }
+
+  const style = {
+    position:'relative',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'white',
+    color:'black',
+
+    p: 4,
+};
   const complaints = [
     {
       id: 1,
@@ -30,7 +49,8 @@ export default function ComplaintList({ postId }) {
   const lowSeverityComplaints = complaints.filter(complaint => complaint.severity === 'Low');
 
   return (
-    <div>
+    <Box sx={style}>
+    <div style={complaintList}>
       <h2>High Severity Complaints:</h2>
       <ul>
         {highSeverityComplaints.map(complaint => (
@@ -62,6 +82,7 @@ export default function ComplaintList({ postId }) {
         ))}
       </ul>
     </div>
+    </Box>
   );
 }
 

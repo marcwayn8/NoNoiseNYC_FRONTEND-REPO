@@ -19,6 +19,27 @@ export default function Sidebar() {
     setShowModal(false);
   };
 
+  function Close(){
+
+    return(
+      <div className="flex justify-end" >
+                <button
+                id="handleCloseModal"
+                  className="text-red-600 hover:text-red-800"
+                  onClick={()=>{handleCloseModal()}}
+                >
+                  X
+                </button>
+              </div> 
+    )
+  }
+
+  const [showButton, setShowButton] = useState(false);
+
+  function handleShow() {
+    setShowButton(!showButton);
+  }
+
   return (
     <div className="sidebar">
       <div className="sidebarWrapper">
@@ -32,7 +53,7 @@ export default function Sidebar() {
               <br></br>
               <br></br>
               <div>
-                <Menu.Button id="button" onClick={handleOpenModal}>
+                <Menu.Button id="button"show={showButton} onClick={()=>{handleOpenModal();handleShow()}}>
                   Make a Complaint
                 </Menu.Button>
               </div>
@@ -45,12 +66,9 @@ export default function Sidebar() {
                 leaveFrom="opacity-100"
                 leaveTo="opacity-0"
               >
-
-                
-                  <ComplaintModal />
-                
+                   <ComplaintModal  Close={Close} />
               </Transition>
-            </Menu>
+            </Menu> 
           </li>
         </ul>
       </div>
